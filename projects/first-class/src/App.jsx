@@ -1,34 +1,54 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import TwitterCard from './components/Twitter_Card/TwitterCard'
 import './App.css'
+import { useState } from 'react';
 
 function App() {
-  const [count, setCount] = useState(0)
+  const[age,setAge] = useState(1);
+
+  const formatUserName = (userName) => `@${userName}`;
+
+  const users = [
+    {userName:'111',
+      name: 'pepe pepe',
+      age: 2,
+      isFolloging: false
+    },
+    {userName:'111',
+      name: 'pepe pepe',
+      age: 2,
+      isFolloging: false
+    },
+    {userName:'111',
+      name: 'pepe pepe',
+      age: 2,
+      isFolloging: false
+    },
+
+  ]
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    <section className = 'App'>
+    {/* <TwitterCard userName='midudev' name='miguel angel' age={age} formatUserName={formatUserName} initialIsFollowing={false}/>
+    <TwitterCard userName='midudev' name='miguel angel' age={1} formatUserName={formatUserName} initialIsFollowing={false}/>
+    <TwitterCard userName='midudev' name='miguel angel' age={1} formatUserName={formatUserName} initialIsFollowing={false}/>
+    <TwitterCard userName='midudev' name='miguel angel' age={1} formatUserName={formatUserName} initialIsFollowing={false}/>
+    <button onClick= {() => setAge(age * 2)}>Duplicated age</button> */
+    }
+     {
+     users.map( ({userName, name, age, isFollowing},key) => {
+      return ( <TwitterCard key={key} userName={userName} name={name} age={age} formatUserName={formatUserName} initialIsFollowing={isFollowing}/>  )
+    })
+    }
+
+    {
+      users.map( (user, key) => {
+        return <p key={key}>{JSON.stringify(user) }</p>  
+      })
+    }
+ 
+      
+    
+    </section>
   )
 }
 
